@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigrinho - Jogo de Caça-Níqueis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="luck-indicator" class="luck-indicator">🍀 SORTE ATIVA</div>
+    
+    <div class="container">
+        <header>
+            <h1>🤑 TIGRINHO 🐯</h1>
+            <p>Gire os rolos e tente a sorte!</p>
+            <div class="jackpot-alert">
+                🐉 NOVOS JACKPOTS DO DRAGÃO! 🐉<br>
+                3 Dragões: 1.000.000.000.000.000x | 2 Dragões: 1.000.000x
+            </div>
+        </header>
+
+        <div class="user-info">
+            <div class="balance">Saldo: R$ <span id="balance">1000.00</span></div>
+            <div class="bet-amount">Aposta: R$ <span id="bet-amount">50.00</span></div>
+        </div>
+
+        <!-- Game Pass Premium -->
+        <div class="game-pass-section game-pass-glow">
+            <h3>🎮 GAME PASS PREMIUM 🎮</h3>
+            <div class="game-pass-info">
+                <div class="game-pass-status">
+                    Status: <span id="game-pass-status" class="game-pass-inactive">INATIVO</span>
+                </div>
+                <button class="game-pass-btn" id="game-pass-btn">Comprar por R$ 100.000</button>
+            </div>
+            <button class="skip-animation-btn" id="skip-animation-btn" disabled>⏩ Pular Animação</button>
+        </div>
+
+        <!-- Game Pass da Sorte -->
+        <div class="game-pass-luck-section game-pass-luck-glow">
+            <h3>🍀 GAME PASS DA SORTE 🍀</h3>
+            <div class="game-pass-luck-info">
+                <div class="game-pass-luck-status">
+                    Status: <span id="game-pass-luck-status" class="game-pass-luck-inactive">INATIVO</span>
+                </div>
+                <button class="game-pass-luck-btn" id="game-pass-luck-btn">Comprar por R$ 500.000</button>
+            </div>
+            <div class="luck-benefits">
+                <p>🎯 Aumenta chances de prêmios maiores!</p>
+                <p>✨ +300% chance de símbolos raros</p>
+                <p>🌟 +200% chance de jackpots</p>
+            </div>
+        </div>
+
+        <div class="deposit-section">
+            <h3>Depositar Fundos</h3>
+            <div class="deposit-controls">
+                <input type="number" id="deposit-input" class="deposit-input" placeholder="Valor em R$" min="1">
+                <button class="deposit-btn" id="deposit-btn">Depositar</button>
+            </div>
+            <div class="quick-deposit">
+                <button class="quick-deposit-btn" data-amount="100">R$ 100</button>
+                <button class="quick-deposit-btn" data-amount="500">R$ 500</button>
+                <button class="quick-deposit-btn" data-amount="1000">R$ 1000</button>
+                <button class="quick-deposit-btn" data-amount="5000">R$ 5000</button>
+                <button class="quick-deposit-btn" data-amount="100000">R$ 100.000</button>
+                <button class="quick-deposit-btn" data-amount="500000">R$ 500.000</button>
+            </div>
+        </div>
+
+        <div class="bet-section">
+            <h3>Definir Aposta</h3>
+            <div class="bet-controls-extended">
+                <input type="number" id="bet-input" class="bet-input" placeholder="Valor da aposta em R$" min="1">
+                <button class="set-bet-btn" id="set-bet-btn">Definir Aposta</button>
+            </div>
+            <div class="quick-bet">
+                <button class="quick-bet-btn" data-amount="10">R$ 10</button>
+                <button class="quick-bet-btn" data-amount="50">R$ 50</button>
+                <button class="quick-bet-btn" data-amount="100">R$ 100</button>
+                <button class="quick-bet-btn" data-amount="500">R$ 500</button>
+                <button class="quick-bet-btn" data-amount="1000">R$ 1000</button>
+            </div>
+        </div>
+
+        <div class="slot-machine">
+            <div class="reels-container">
+                <div class="reel" id="reel1">
+                    <div class="reel-content" id="reel-content1">
+                        <!-- Símbolos serão inseridos via JavaScript -->
+                    </div>
+                </div>
+                <div class="reel" id="reel2">
+                    <div class="reel-content" id="reel-content2">
+                        <!-- Símbolos serão inseridos via JavaScript -->
+                    </div>
+                </div>
+                <div class="reel" id="reel3">
+                    <div class="reel-content" id="reel-content3">
+                        <!-- Símbolos serão inseridos via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="win-message" id="win-message"></div>
+
+            <div class="controls">
+                <button class="spin-btn" id="spin-btn">Girar!</button>
+                <div class="bet-controls">
+                    <button class="bet-btn" id="decrease-bet">-10%</button>
+                    <button class="bet-btn" id="increase-bet">+10%</button>
+                </div>
+                <button class="auto-spin-btn" id="auto-spin-btn">Auto x10</button>
+            </div>
+        </div>
+
+        <div class="paytable">
+            <h2>Tabela de Pagamentos</h2>
+            <div class="mega-jackpot-item">
+                <div class="symbols">
+                    <div class="symbol-small dragon-small">🐉</div>
+                    <div class="symbol-small dragon-small">🐉</div>
+                    <div class="symbol-small dragon-small">🐉</div>
+                </div>
+                <div>1.000.000.000.000.000x</div>
+            </div>
+            <div class="jackpot-item">
+                <div class="symbols">
+                    <div class="symbol-small dragon-small">🐉</div>
+                    <div class="symbol-small dragon-small">🐉</div>
+                    <div class="symbol-small">❓</div>
+                </div>
+                <div>1.000.000x</div>
+            </div>
+            <div class="paytable-item">
+                <div class="symbols">
+                    <div class="symbol-small">🐯</div>
+                    <div class="symbol-small">🐯</div>
+                    <div class="symbol-small">🐯</div>
+                </div>
+                <div>100x</div>
+            </div>
+            <div class="paytable-item">
+                <div class="symbols">
+                    <div class="symbol-small">🪙</div>
+                    <div class="symbol-small">🪙</div>
+                    <div class="symbol-small">🪙</div>
+                </div>
+                <div>50x</div>
+            </div>
+            <div class="paytable-item">
+                <div class="symbols">
+                    <div class="symbol-small">💎</div>
+                    <div class="symbol-small">💎</div>
+                    <div class="symbol-small">💎</div>
+                </div>
+                <div>30x</div>
+            </div>
+            <div class="paytable-item">
+                <div class="symbols">
+                    <div class="symbol-small">🍒</div>
+                    <div class="symbol-small">🍒</div>
+                    <div class="symbol-small">🍒</div>
+                </div>
+                <div>20x</div>
+            </div>
+            <div class="paytable-item">
+                <div class="symbols">
+                    <div class="symbol-small">🍀</div>
+                    <div class="symbol-small">🍀</div>
+                    <div class="symbol-small">🍀</div>
+                </div>
+                <div>10x</div>
+            </div>
+            <div class="paytable-item">
+                <div class="symbols">
+                    <div class="symbol-small">🐯</div>
+                    <div class="symbol-small">🐯</div>
+                </div>
+                <div>5x</div>
+            </div>
+        </div>
+
+        <div class="history">
+            <h2>Histórico</h2>
+            <div id="history-list">
+                <!-- Histórico será inserido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Depósito -->
+    <div class="modal" id="deposit-modal">
+        <div class="modal-content">
+            <h2>Confirmar Depósito</h2>
+            <p id="deposit-details">Depositando R$ 0.00</p>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel-btn" id="cancel-deposit">Cancelar</button>
+                <button class="modal-btn confirm-btn" id="confirm-deposit">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação do Game Pass Premium -->
+    <div class="modal" id="game-pass-modal">
+        <div class="modal-content">
+            <h2>Comprar Game Pass</h2>
+            <p>Deseja comprar o Game Pass Premium por R$ 100.000?</p>
+            <p><strong>Benefícios:</strong></p>
+            <ul style="text-align: left; margin: 10px 0; padding-left: 20px;">
+                <li>⏩ Pular animações dos giros</li>
+                <li>🎮 Experiência de jogo mais rápida</li>
+                <li>⚡ Resultados instantâneos</li>
+            </ul>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel-btn" id="cancel-game-pass">Cancelar</button>
+                <button class="modal-btn confirm-btn" id="confirm-game-pass">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação do Game Pass da Sorte -->
+    <div class="modal" id="game-pass-luck-modal">
+        <div class="modal-content">
+            <h2>Comprar Game Pass da Sorte</h2>
+            <p>Deseja comprar o Game Pass da Sorte por R$ 500.000?</p>
+            <p><strong>Benefícios:</strong></p>
+            <ul style="text-align: left; margin: 10px 0; padding-left: 20px;">
+                <li>🎯 Aumenta chances de prêmios maiores</li>
+                <li>✨ +300% chance de símbolos raros aparecerem</li>
+                <li>🌟 +200% chance de acertar jackpots</li>
+                <li>💫 Melhorias nas probabilidades de todos os prêmios</li>
+                <li>🔮 Sorte aumentada significativamente</li>
+            </ul>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel-btn" id="cancel-game-pass-luck">Cancelar</button>
+                <button class="modal-btn confirm-btn" id="confirm-game-pass-luck">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Tigrinho - Projeto Escolar | Jogue com responsabilidade</p>
+        <p>Este jogo é apenas para fins educacionais. Não utilize dinheiro real.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
