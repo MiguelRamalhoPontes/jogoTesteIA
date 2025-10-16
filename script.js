@@ -265,7 +265,8 @@ function showInstantResult() {
         }
         
         if (targetPosition !== -1) {
-            reelContent.style.top = (-targetPosition * 150) + 'px';
+            const symbolHeight = window.innerWidth <= 600 ? 100 : 150;
+            reelContent.style.top = (-targetPosition * symbolHeight) + 'px';
         }
     }
     
@@ -275,7 +276,7 @@ function showInstantResult() {
 // Girar um rolo específico
 function spinReel(reelIndex, targetSymbol) {
     const reelContent = reelContents[reelIndex];
-    const symbolHeight = 150;
+    const symbolHeight = window.innerWidth <= 600 ? 100 : 150;
     
     const symbolsArray = Array.from(reelContent.children);
     let targetPosition = -1;
